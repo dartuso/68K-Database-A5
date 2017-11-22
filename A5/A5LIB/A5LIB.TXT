@@ -1,0 +1,54 @@
+A5LIB.BIN operations
+
+These routines are in the module A5LIB.BIN, which is a GST linkable object 
+file. The following headers and descriptions provide a high-level view to 
+each of these routines.  Parameters are pushed on the stack from right to left.
+
+Both file operations will use D:\ as the default drive for the file location,
+however, including the drive and path in the file name will override the default.
+
+These are generic operations, as such the array has a type of record which
+can be any type of record.
+
+void read_file (char filename[], record array[], long* charsReadin, 
+				long maxsize)
+
+The Readfile operation reads bytes from the file, with the name filename, 
+placing them in the specified array up to the specified maximum number of 
+bytes.  The number of bytes actually read is returned in the location supplied 
+in the variable charsReadin. If the read is unsuccessful for any reason a longword 
+value of -1 is returned in charsReadin.
+
+BYTE write_file (char filename[], record array[], long charsTowrite)
+
+The Writefile is operation writes the specified number of bytes from the 
+supplied array of structures to the specified file, with the named filename. 
+This operation is destructive in that if a file with the name filename 
+already exists it is overwritten.
+
+The function returns a BYTE error flag with the following values:
+ 	 0 - no error
+	-1 - invalid drive
+	-2 - can't open file
+	-3 - error saving to file
+	-4 - error closing file
+
+
+char read_char()
+
+This function waits for and reads a single character from the keyboard.
+The character is returned on the stack. The caller is required to make
+space available on the stack for this to be returned.
+
+void write_char(char ch)
+
+The function writes the single character passed to the screen.
+The character must be pushed on the stack as a byte.
+	
+	
+void exit()
+
+This function pauses the program and waits for the user to press any key.
+Once the user presses a key the program terminates.  
+This subroutine never returns.
+

@@ -1,0 +1,4 @@
+input	d:\a5\a5.bin
+input	d:\a5\a5lib\a5lib.bin
+output	d:\a5.tos
+xdebug
